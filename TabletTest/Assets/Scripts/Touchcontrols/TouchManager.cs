@@ -20,7 +20,7 @@ public class TouchManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         if(Physics.Raycast(ray, out RaycastHit hit))
         {
-            if(hit.collider.tag == "Interactable")
+            if(hit.collider.CompareTag("Interactable"))
             {
                 hit.collider.GetComponent<Interactable>().HookTriggered();
             }

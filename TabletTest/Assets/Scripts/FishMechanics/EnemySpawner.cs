@@ -56,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
         var randRad = randAngle * Mathf.PI / 180;
         var randDist = Random.Range(spawnRangeMin, spawnRangeMax);
 
-        return myTransform.position + new Vector3(Mathf.Sin(randRad), Random.Range(-1, 1f), Mathf.Cos(randRad)) * randDist;
+        return myTransform.position + new Vector3(Mathf.Sin(randRad), 0, Mathf.Cos(randRad)) * randDist;
     }
 
     void OnDrawGizmosSelected()
