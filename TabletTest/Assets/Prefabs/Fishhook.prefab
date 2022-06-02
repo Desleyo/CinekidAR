@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8874330476346497895}
   - component: {fileID: 8874330476346497896}
   - component: {fileID: 8874330476346497892}
+  - component: {fileID: -8424512049262063467}
   m_Layer: 0
   m_Name: Fishhook
   m_TagString: Interactable
@@ -114,3 +115,18 @@ MonoBehaviour:
   loweredPosY: 0
   minCooldown: 3
   maxCooldown: 5
+--- !u!114 &-8424512049262063467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874330476346497897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238debc1a8c5ee245b6f2f6e2c9a4cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  speed: 0
+  easeType: 0

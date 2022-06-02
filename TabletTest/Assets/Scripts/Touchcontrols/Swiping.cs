@@ -28,28 +28,28 @@ public class Swiping : MonoBehaviour
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             currentPosition = Input.GetTouch(0).position;
-            Vector2 Distance = currentPosition - startTouchPosition;
+            Vector2 distance = currentPosition - startTouchPosition;
 
             if (!stopTouch)
             {
-                if (Distance.x < -swipeRange)
+                if (distance.x < -swipeRange)
                 {
-                    swipeDirection.text = "Left";
+                    swipeDirection.text = distance + " Left";
                     stopTouch = true;
                 }
-                else if (Distance.x > swipeRange)
+                else if (distance.x > swipeRange)
                 {
-                    swipeDirection.text = "Right";
+                    swipeDirection.text = distance + " Right";
                     stopTouch = true;
                 }
-                else if (Distance.y > swipeRange)
+                else if (distance.y > swipeRange)
                 {
-                    swipeDirection.text = "Up";
+                    swipeDirection.text = distance + " Up";
                     stopTouch = true;
                 }
-                else if (Distance.y < -swipeRange)
+                else if (distance.y < -swipeRange)
                 {
-                    swipeDirection.text = "Down";
+                    swipeDirection.text = distance + " Down";
                     stopTouch = true;
                 }
             }

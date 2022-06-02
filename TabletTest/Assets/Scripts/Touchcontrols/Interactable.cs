@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] float startPosY;
-    [SerializeField] float loweredPosY;
-
     [Space, SerializeField] float minCooldown = 3;
     [SerializeField] float maxCooldown = 5;
     bool inCooldown;
-
+      
     private void Start()
     {
         HookTriggered();   
@@ -21,7 +18,7 @@ public class Interactable : MonoBehaviour
         if (inCooldown)
             return;
 
-        transform.position = new Vector3(transform.position.x, startPosY, transform.position.z);
+        //Use ease mechanic
 
         StartCoroutine(HookCooldown(Random.Range(minCooldown, maxCooldown)));
     }
@@ -32,7 +29,7 @@ public class Interactable : MonoBehaviour
 
         yield return new WaitForSeconds(cooldown);
 
-        transform.position = new Vector3(transform.position.x, loweredPosY, transform.position.z);
+        //Use ease mechanic
 
         inCooldown = false;
     }
