@@ -17,8 +17,6 @@ public abstract class Tween
         _speed = speed;
         _percent = 0;
         EaseMethod = Method;
-
-        Debug.Log("Tween Started");
     }
 
     public void UpdateTween(float dt)
@@ -29,12 +27,10 @@ public abstract class Tween
         {
             float easeStep = EaseMethod(_percent);
             PerformTween(easeStep);
-            Debug.Log(_gameObject + ": Tween Update");
         }
         else
         {
             TweenEnd();
-            Debug.Log("Tween Finished!");
         }
     }
 

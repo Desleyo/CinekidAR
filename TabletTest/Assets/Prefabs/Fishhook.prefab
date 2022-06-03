@@ -111,10 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df508c8e45e6b884b9e48b89706b7d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosY: 5
-  loweredPosY: 0
-  minCooldown: 3
-  maxCooldown: 5
+  tween: {fileID: -8424512049262063467}
+  minCooldown: 5
+  maxCooldown: 7
 --- !u!114 &-8424512049262063467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238debc1a8c5ee245b6f2f6e2c9a4cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 0, z: 0}
-  speed: 0
+  tweenMachine: {fileID: 0}
+  speed: 1
   easeType: 0

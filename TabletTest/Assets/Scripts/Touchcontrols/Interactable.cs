@@ -4,33 +4,42 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [Space, SerializeField] float minCooldown = 3;
-    [SerializeField] float maxCooldown = 5;
+    [SerializeField] TweenTester tween;
+    [SerializeField] float cooldown = 2f;
     bool inCooldown;
-      
+
     private void Start()
     {
-        HookTriggered();   
+        HookTriggered(true);
     }
 
-    public void HookTriggered()
+    private void Update()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            HookTriggered(false);
+        }
+    }
+
+    public void HookTriggered(bool shouldLowerHook)
     {
         if (inCooldown)
             return;
 
-        //Use ease mechanic
+        tween.StartEasing(shouldLowerHook);
 
-        StartCoroutine(HookCooldown(Random.Range(minCooldown, maxCooldown)));
+        if (!shouldLowerHook)
+        {
+            StartCoroutine(HookCooldown());
+        }
     }
 
-    IEnumerator HookCooldown(float cooldown)
+    IEnumerator HookCooldown()
     {
         inCooldown = true;
 
         yield return new WaitForSeconds(cooldown);
 
-        //Use ease mechanic
-
-        inCooldown = false;
+        Destroy(gameObject);
     }
 }

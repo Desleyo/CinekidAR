@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyToSpawn: {fileID: 8874330476346497897, guid: ceb646e7436153a4e806b8cef337c7b6, type: 3}
   initialDelay: 1
-  spawnDelay: 2
+  spawnDelay: 3
   spawnDirection: 0
   spawnAngle: 360
   spawnRangeMin: 3
@@ -167,7 +167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196668320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -520,7 +520,7 @@ MonoBehaviour:
   _avoidanceDistance: 10
   _aligementDistance: 10
   _obstacleDistance: 10
-  _boundsDistance: 15
+  _boundsDistance: 25
   _cohesionWeight: 10
   _avoidanceWeight: 10
   _aligementWeight: 10

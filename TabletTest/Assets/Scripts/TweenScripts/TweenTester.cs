@@ -4,75 +4,86 @@ using UnityEngine;
 
 public class TweenTester : MonoBehaviour
 {
-    public Vector3 targetPosition;
+    public TweenMachine tweenMachine;
+
+    public Vector3 startPos, loweredPos;
     public float speed;
 
     public EaseTypes easeType;
-    void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        tweenMachine = FindObjectOfType<TweenMachine>();
 
-            switch (easeType)
-            {
-                case EaseTypes.Linear:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.Linear);
-                    break;
+        startPos = loweredPos = transform.position;
+        loweredPos.y = 0f;
+    }
 
-                case EaseTypes.EaseInQuad:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuad);
-                    break;
+    public void StartEasing(bool shouldHookLower)
+    {
+        Vector3 targetPos = shouldHookLower ? loweredPos : startPos;
 
-                case EaseTypes.EaseInCubic:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInCubic);
-                    break;
+        switch (easeType)
+        {
+            case EaseTypes.Linear:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.Linear);
+                break;
 
-                case EaseTypes.EaseInQuart:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuart);
-                    break;
+            case EaseTypes.EaseInQuad:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInQuad);
+                break;
 
-                case EaseTypes.EaseInQuint:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseInCubic:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInCubic);
+                break;
 
-                case EaseTypes.EaseInBack:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseInQuart:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInQuart);
+                break;
 
-                case EaseTypes.EaseInCirc:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseInQuint:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInQuint);
+                break;
 
-                case EaseTypes.EaseInSine:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseInBack:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInBack);
+                break;
 
-                case EaseTypes.EaseOutQuad:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuad);
-                    break;
+            case EaseTypes.EaseInCirc:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInCirc);
+                break;
 
-                case EaseTypes.EaseOutCubic:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInCubic);
-                    break;
+            case EaseTypes.EaseInSine:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseInSine);
+                break;
 
-                case EaseTypes.EaseOutQuart:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuart);
-                    break;
+            case EaseTypes.EaseOutQuad:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutQuad);
+                break;
 
-                case EaseTypes.EaseOutQuint:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseOutCubic:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutCubic);
+                break;
 
-                case EaseTypes.EaseOutBack:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseOutQuart:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutQuart);
+                break;
 
-                case EaseTypes.EaseOutCirc:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
+            case EaseTypes.EaseOutQuint:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutQuint);
+                break;
 
-                case EaseTypes.EaseOutSine:
-                    FindObjectOfType<TweenMachine>().MoveGameObject(gameObject, targetPosition, speed, Easings.EaseInQuint);
-                    break;
-            }
+            case EaseTypes.EaseOutBack:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutBack);
+                break;
+
+            case EaseTypes.EaseOutCirc:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutCirc);
+                break;
+
+            case EaseTypes.EaseOutSine:
+                tweenMachine.MoveGameObject(gameObject, targetPos, speed, Easings.EaseOutSine);
+                break;
+        }
     }
 }

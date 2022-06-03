@@ -24,5 +24,15 @@ public class PositionTween : Tween
     protected override void TweenEnd()
     {
         _gameObject.transform.position = _targetPosition;
+
+        TweenMachine tweenMachine = GameObject.FindObjectOfType<TweenMachine>();
+        foreach (PositionTween tween in tweenMachine.activeTweens)
+        {
+            if(tween == this)
+            {
+                tweenMachine.activeTweens.Remove(tween);
+                return;
+            }
+        }
     }
 }

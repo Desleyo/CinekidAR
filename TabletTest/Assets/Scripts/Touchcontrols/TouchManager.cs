@@ -28,7 +28,7 @@ public class TouchManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("Interactable"))
             {
-                hit.collider.GetComponent<Interactable>().HookTriggered();
+                hit.collider.GetComponent<Interactable>().HookTriggered(false);
             }
         }
     }

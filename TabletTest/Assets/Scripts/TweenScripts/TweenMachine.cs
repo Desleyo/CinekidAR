@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class TweenMachine : MonoBehaviour
 {
-    private List<Tween> _activeTweens = new List<Tween>();
+     public List<Tween> activeTweens = new List<Tween>();
 
     private void Update()
     {
-        if (_activeTweens.Count < 1) return;
+        if (activeTweens.Count < 1) return;
 
-        for (int i = 0; i < _activeTweens.Count; i++)
+        for (int i = 0; i < activeTweens.Count; i++)
         {
-            _activeTweens[i].UpdateTween(Time.deltaTime);
+            activeTweens[i].UpdateTween(Time.deltaTime);
         }
     }
 
     public void MoveGameObject(GameObject objectToMove, Vector3 targetPosition, float speed, Func<float, float> EaseMethod)
     {
         PositionTween newTween = new PositionTween(objectToMove, targetPosition, speed, EaseMethod);
-        _activeTweens.Add(newTween);
+        activeTweens.Add(newTween);
     }
 }
