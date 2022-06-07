@@ -35,13 +35,15 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Fish_Mat
   m_Shader: {fileID: -6465566751694194690, guid: 68a4192e91a480a49bb9a236db01599d, type: 3}
-  m_ShaderKeywords: _SPEC_ON
+  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Opaque
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -85,6 +87,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: 57476953485bd4a4a8dbd1e4497c1aed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -125,7 +131,7 @@ Material:
     - _Distance: 2
     - _DstBlend: 0
     - _EmiVal: -0.44
-    - _Frequency: 1.52
+    - _Frequency: 2
     - _FrequencyX: 10
     - _FrequencyY: 10
     - _FrequencyZ: 5.03
@@ -138,8 +144,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 3
-    - _QueueControl: -1
+    - _Power: 5
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
     - _Seed: 0
