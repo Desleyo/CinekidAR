@@ -95,7 +95,7 @@ public class Flock : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-            Gizmos.color =new Color32(24, 218, 222, 32);
-            Gizmos.DrawSphere(transform.position, _boundsDistance);
+        Gizmos.color = new Color32(24, 218, 222, 32);
+        Gizmos.DrawSphere(transform.position, _boundsDistance);
     }
 }
