@@ -35,11 +35,11 @@ public class TouchManager : MonoBehaviour
 
     void CheckIfSwipingDown()
     {
-        if(Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
             startPosY = Input.GetTouch(0).position.y;
         }
-        else if(Input.GetTouch(0).phase == TouchPhase.Moved)
+        else if (Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             currentPosY = Input.GetTouch(0).position.y;
         }
