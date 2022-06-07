@@ -6,7 +6,7 @@ public class TweenTester : MonoBehaviour
 {
     public TweenMachine tweenMachine;
 
-    public Vector3 startPos, loweredPos;
+    Vector3 startPos, loweredPos;
     public float speed;
 
     public EaseTypes easeType;

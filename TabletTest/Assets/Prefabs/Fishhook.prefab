@@ -112,8 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tween: {fileID: -8424512049262063467}
-  minCooldown: 5
-  maxCooldown: 7
+  cooldown: 2
 --- !u!114 &-8424512049262063467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,5 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenMachine: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  loweredPos: {x: 0, y: 0, z: 0}
   speed: 1
-  easeType: 0
+  easeInType: 0
+  easeOutType: 6
