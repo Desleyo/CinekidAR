@@ -7,7 +7,7 @@ public class Flock : MonoBehaviour
 {
     [Header("Spawn Setup")]
     [SerializeField] private FlockUnit flockUnitPrefab;
-    [SerializeField] private int flockSize;
+    [SerializeField] public int flockSize;
     [SerializeField] private Vector3 spawnBounds;
 
     [Header("Speed Setup")]

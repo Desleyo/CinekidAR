@@ -13,14 +13,6 @@ public class Interactable : MonoBehaviour
         HookTriggered(true);
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            HookTriggered(false);
-        }
-    }
-
     public void HookTriggered(bool shouldLowerHook)
     {
         if (inCooldown)
