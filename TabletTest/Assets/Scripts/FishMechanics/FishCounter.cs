@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class FishCounter : MonoBehaviour
 {
     public static FishCounter fishCounter;
-
     [SerializeField] Text debugText;
     int currentFishAmount;
+    int flocks;
 
     private void Awake()
     {
@@ -17,7 +17,9 @@ public class FishCounter : MonoBehaviour
 
     private void Start()
     {
-        currentFishAmount = FindObjectOfType<Flock>().flockSize;
+        flocks = FindObjectsOfType<Flock>().Length;
+        currentFishAmount = FindObjectOfType<Flock>().flockSize * flocks;
+        
         debugText.text = currentFishAmount.ToString();
     }
 
