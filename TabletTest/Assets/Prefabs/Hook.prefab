@@ -129,7 +129,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 7.34, y: 190, z: 0.5}
+  - {x: 7.34, y: 3000, z: 0.5}
   - {x: 7.34, y: 0.8496824, z: 0.5}
   - {x: 7.34, y: 0.6114214, z: 0.5}
   - {x: 7.34, y: 0.6067061, z: 0.5}

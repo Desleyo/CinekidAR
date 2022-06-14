@@ -7,6 +7,7 @@ public class TouchManager : MonoBehaviour
 {
     [SerializeField] Text debugText;
 
+    [Space, SerializeField] float followSpeed = .01f;
     [SerializeField] float swipeRange = 50f;
     float startPosY, currentPosY;
     bool swipingDown;
@@ -19,6 +20,7 @@ public class TouchManager : MonoBehaviour
             return;
 
         CheckTouchBegan();
+        CheckTouchMoved();
         CheckTouchEnded();
     }
 
@@ -37,6 +39,17 @@ public class TouchManager : MonoBehaviour
                 currentInteractable = hit.collider.GetComponentInParent<Interactable>();
             }
         }
+    }
+
+    void CheckTouchMoved()
+    {
+        if (Input.GetTouch(0).phase != TouchPhase.Moved)
+            return;
+
+        Touch touch = Input.GetTouch(0);
+        Vector3 currentPos = currentInteractable.transform.position;
+
+        currentInteractable.transform.position = new Vector3(currentPos.x, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
     }
 
     void CheckTouchEnded()

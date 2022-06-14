@@ -1051,6 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 351202287}
+  followSpeed: 0.002
   swipeRange: 200
 --- !u!4 &993202325
 Transform:
