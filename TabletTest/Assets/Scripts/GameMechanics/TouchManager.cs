@@ -7,12 +7,12 @@ public class TouchManager : MonoBehaviour
 {
     [SerializeField] Text debugText;
 
-    [Space, SerializeField] float followSpeed = .01f;
-    [SerializeField] float swipeRange = 50f;
-    float startPosY, currentPosY;
-    bool swipingDown;
+    [Space, SerializeField] float followSpeed = .002f;
+    [SerializeField] float swipeRange = 200f;
 
-    Interactable currentInteractable;
+    float startPosY, currentPosY;
+
+    FishHook currentFishHook;
 
     private void Update()
     {
@@ -34,9 +34,9 @@ public class TouchManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (hit.collider.CompareTag("Interactable"))
+            if (hit.collider.CompareTag("FishHook"))
             {
-                currentInteractable = hit.collider.GetComponentInParent<Interactable>();
+                currentFishHook = hit.collider.GetComponent<FishHook>();
             }
         }
     }
@@ -47,9 +47,9 @@ public class TouchManager : MonoBehaviour
             return;
 
         Touch touch = Input.GetTouch(0);
-        Vector3 currentPos = currentInteractable.transform.position;
+        Vector3 currentPos = currentFishHook.transform.position;
 
-        currentInteractable.transform.position = new Vector3(currentPos.x, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
+        currentFishHook.transform.position = new Vector3(currentPos.x, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
     }
 
     void CheckTouchEnded()
@@ -59,16 +59,16 @@ public class TouchManager : MonoBehaviour
 
         if (CheckIfSwipingDown())
         {
-            currentInteractable.HookTriggered(false);
+            currentFishHook.HookTriggered(false);
         }
 
-        currentInteractable = null;
+        currentFishHook = null;
     }
 
     bool CheckIfSwipingDown()
     {
         currentPosY = Input.GetTouch(0).position.y;
 
-        return (currentPosY - startPosY) < -swipeRange;
+        return (currentPosY - startPosY) < swipeRange || (currentPosY - startPosY) > swipeRange;
     }
 }

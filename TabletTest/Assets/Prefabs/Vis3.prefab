@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8187055106430705313}
   m_Layer: 0
   m_Name: Vis3
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6316046092510204786}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4325143, y: 0.4387548, z: -13.508483}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d93d19127a3784c8f254293d3d3400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FishId: 3
   FOVAngle: 270
   smoothDamp: 1
   obstacleMask:

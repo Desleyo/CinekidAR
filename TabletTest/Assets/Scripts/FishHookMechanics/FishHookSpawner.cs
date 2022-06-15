@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class FishHookSpawner : MonoBehaviour
 {
-    private Transform myTransform;
-    private GameObject myGameOjbect;
-    private bool _isSpawning = false;
+    Transform myTransform;
+    GameObject myGameOjbect;
+    bool _isSpawning;
 
     [Header("Components")]
     [SerializeField] private GameObject enemyToSpawn;
@@ -24,32 +22,25 @@ public class EnemySpawner : MonoBehaviour
     [Header("SpawnRange")]
     [SerializeField] private float spawnRangeMin;
     [SerializeField] private float spawnRangeMax;
+
     private void Awake()
     {
-        this.myTransform = transform;
-        this.myGameOjbect = gameObject;
+        myTransform = transform;
+        myGameOjbect = gameObject;
     }
+
     private void Start()
     {
-        InitiateSpawning();
+        InvokeRepeating(nameof(InitiateEnemy), initialDelay, spawnDelay);
     }
+
     private void InitiateEnemy()
     {
         var enemy = Instantiate(enemyToSpawn, GetRandomSpawnPoint(), Quaternion.identity);
         enemy.transform.LookAt(myTransform);
     }
 
-    public void InitiateSpawning()
-    {
-        InvokeRepeating(nameof(InitiateEnemy), initialDelay, spawnDelay);
-    }
-
-    public void DisableSpawning()
-    {
-        CancelInvoke(nameof(InitiateEnemy));
-    }
-
-    private Vector3 GetRandomSpawnPoint()
+    Vector3 GetRandomSpawnPoint()
     {
         float randAngle = Random.Range((-spawnAngle / 2) + spawnDirection, (spawnAngle / 2) + spawnDirection);
         var randRad = randAngle * Mathf.PI / 180;
@@ -72,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawRay(transform.position, spawnIndicatorLeft);
         Gizmos.DrawRay(transform.position, spawnIndicatorRight);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, spawnRangeMax);
+        Gizmos.DrawWireSphere(transform.position, spawnRangeMax);
 
         Vector3 safeIndicatorLeft = upRayRotation * transform.forward * spawnRangeMin;
         Vector3 safeIndicatorRight = downRayRotation * transform.forward * spawnRangeMin;
@@ -80,6 +71,6 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position, safeIndicatorLeft);
         Gizmos.DrawRay(transform.position, safeIndicatorRight);
-        Gizmos.DrawWireSphere(this.transform.position, spawnRangeMin);
+        Gizmos.DrawWireSphere(transform.position, spawnRangeMin);
     }
 }

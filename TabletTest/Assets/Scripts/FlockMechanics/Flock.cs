@@ -88,6 +88,7 @@ public class Flock : MonoBehaviour
             randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
             var spawnPosition = transform.position + randomVector;
             var rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
+
             allUnits[i] = Instantiate(flockUnitPrefab, spawnPosition, rotation);
             allUnits[i].AssignFlock(this);
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
@@ -95,7 +96,7 @@ public class Flock : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-            Gizmos.color =new Color32(24, 218, 222, 32);
-            Gizmos.DrawSphere(transform.position, _boundsDistance);
+        Gizmos.color = new Color32(24, 218, 222, 32);
+        Gizmos.DrawSphere(transform.position, _boundsDistance);
     }
 }
