@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class TouchManager : MonoBehaviour
 {
-    [SerializeField] Text debugText;
-
     [Space, SerializeField] float followSpeed = .002f;
     [SerializeField] float swipeRange = 200f;
 
@@ -69,6 +67,7 @@ public class TouchManager : MonoBehaviour
     {
         currentPosY = Input.GetTouch(0).position.y;
 
-        return (currentPosY - startPosY) < swipeRange || (currentPosY - startPosY) > swipeRange;
+        float distancePosY = currentPosY - startPosY;
+        return distancePosY < -swipeRange || distancePosY > swipeRange;
     }
 }
