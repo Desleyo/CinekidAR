@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] Text timerText;
+    [SerializeField] float timeInMinutes;
 
-    [SerializeField] Text text;
-    [SerializeField] float currentTime;
+    float currentTime;
 
     private void Awake()
     {
-        currentTime *= 60;
+        currentTime = timeInMinutes * 60;
     }
 
     void Update()
@@ -22,10 +23,10 @@ public class Timer : MonoBehaviour
     }
     void UpdateTime()
     {
-        currentTime = currentTime - Time.deltaTime;
+        currentTime -= Time.deltaTime;
 
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        text.text = "Time: " + time.ToString(@"mm\:ss");
+        timerText.text = "Tijd over: " + time.ToString(@"mm\:ss");
         if (currentTime <= 0)
         {
             ResetScene();

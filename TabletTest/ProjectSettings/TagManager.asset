@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Interactable
   - Fish
+  - FishHook
   layers:
   - Default
   - TransparentFX
