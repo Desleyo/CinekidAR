@@ -231,12 +231,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ac365fb1a0c584abb0851a42b461fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fakeFish:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   tween: {fileID: 3423441221692207432}
-  cooldown: 3
+  destroyCooldown: 3
+  fishHookWaitTime: 1
+  shakeSpeed: 5
+  shakeAmount: 0.01
+  shakeHook: 0
 --- !u!114 &3423441221692207432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,5 +250,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenMachine: {fileID: 0}
-  speed: 1
+  speed: 2
   easeType: 0

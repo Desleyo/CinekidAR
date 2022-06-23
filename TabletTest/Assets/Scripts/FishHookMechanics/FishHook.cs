@@ -5,7 +5,9 @@ using UnityEngine;
 public class FishHook : MonoBehaviour
 {
     [SerializeField] TweenTester tween;
-    [SerializeField] float cooldown = 3f;
+    [SerializeField] float destroyCooldown = 3f;
+    [SerializeField] float fishHookWaitTime = 1f;
+
     bool inCooldown;
 
     private void Start()
@@ -22,17 +24,9 @@ public class FishHook : MonoBehaviour
 
         if (!shouldLowerHook)
         {
-            StartCoroutine(HookCooldown());
+            inCooldown = true;
+            Destroy(gameObject, destroyCooldown);
         }
-    }
-
-    IEnumerator HookCooldown()
-    {
-        inCooldown = true;
-
-        yield return new WaitForSeconds(cooldown);
-
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,13 +34,14 @@ public class FishHook : MonoBehaviour
         if (!other.CompareTag("Fish"))
             return;
 
-        other.gameObject.SetActive(false);
-
-        ReturnHook();
+        StartCoroutine(ReturnHook(other.gameObject));
     }
 
-    void ReturnHook()
+    IEnumerator ReturnHook(GameObject fish)
     {
+        yield return new WaitForSeconds(fishHookWaitTime);
+
+        fish.SetActive(false);
         FishCounter.fishCounter.FishGotHooked();
 
         HookTriggered(false);

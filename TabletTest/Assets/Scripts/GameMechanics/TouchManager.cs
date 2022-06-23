@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class TouchManager : MonoBehaviour
 {
-    [Space, SerializeField] float followSpeed = .002f;
+    [SerializeField] float followSpeed = .002f;
     [SerializeField] float swipeRange = 200f;
 
-    float startPosY, currentPosY;
+    [Space, SerializeField] float shakeSpeed = 5f;
+    [SerializeField] float shakeAmount = .1f;
 
     FishHook currentFishHook;
+    float startSwipePosY, currentSwipePosY;
+    float hookStartPosX;
 
     private void Update()
     {
@@ -18,7 +21,7 @@ public class TouchManager : MonoBehaviour
             return;
 
         CheckTouchBegan();
-        CheckTouchMoved();
+        MoveHook();
         CheckTouchEnded();
     }
 
@@ -27,7 +30,7 @@ public class TouchManager : MonoBehaviour
         if (Input.GetTouch(0).phase != TouchPhase.Began)
             return;
 
-        startPosY = Input.GetTouch(0).position.y;
+        startSwipePosY = Input.GetTouch(0).position.y;
 
         Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -35,19 +38,18 @@ public class TouchManager : MonoBehaviour
             if (hit.collider.CompareTag("FishHook"))
             {
                 currentFishHook = hit.collider.GetComponent<FishHook>();
+                hookStartPosX = currentFishHook.transform.position.x;
             }
         }
     }
 
-    void CheckTouchMoved()
+    void MoveHook()
     {
-        if (Input.GetTouch(0).phase != TouchPhase.Moved)
-            return;
-
         Touch touch = Input.GetTouch(0);
         Vector3 currentPos = currentFishHook.transform.position;
+        float shakeHookPosX = hookStartPosX + Mathf.Sin(Time.time * shakeSpeed) * shakeAmount;
 
-        currentFishHook.transform.position = new Vector3(currentPos.x, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
+        currentFishHook.transform.position = new Vector3(shakeHookPosX, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
     }
 
     void CheckTouchEnded()
@@ -55,7 +57,7 @@ public class TouchManager : MonoBehaviour
         if (Input.GetTouch(0).phase != TouchPhase.Ended)
             return;
 
-        if (CheckIfSwipingDown())
+        if (CheckIfSwipeThresholdReached())
         {
             currentFishHook.HookTriggered(false);
         }
@@ -63,11 +65,12 @@ public class TouchManager : MonoBehaviour
         currentFishHook = null;
     }
 
-    bool CheckIfSwipingDown()
+    bool CheckIfSwipeThresholdReached()
     {
-        currentPosY = Input.GetTouch(0).position.y;
+        currentSwipePosY = Input.GetTouch(0).position.y;
 
-        float distancePosY = currentPosY - startPosY;
+        float distancePosY = currentSwipePosY - startSwipePosY;
+
         return distancePosY < -swipeRange || distancePosY > swipeRange;
     }
 }

@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: de71c14750f728d4397c73ec9d5d6a2f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: de71c14750f728d4397c73ec9d5d6a2f, type: 3}
       propertyPath: m_LocalScale.x
@@ -181,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: de71c14750f728d4397c73ec9d5d6a2f, type: 3}
       propertyPath: m_Name
       value: Vis2 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de71c14750f728d4397c73ec9d5d6a2f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de71c14750f728d4397c73ec9d5d6a2f, type: 3}
@@ -318,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &266090399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +541,7 @@ GameObject:
   - component: {fileID: 351202288}
   - component: {fileID: 351202287}
   m_Layer: 5
-  m_Name: DebugText
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -835,8 +839,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0524f163e0ae4949b9f26317b13e8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 732934611}
-  currentTime: 3
+  timerText: {fileID: 351202287}
+  timeInMinutes: 3
 --- !u!1001 &704985528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -846,7 +850,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 194df2982e70073448b102c3d5e2fec4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 194df2982e70073448b102c3d5e2fec4, type: 3}
       propertyPath: m_LocalScale.x
@@ -896,6 +900,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vis
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 194df2982e70073448b102c3d5e2fec4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194df2982e70073448b102c3d5e2fec4, type: 3}
 --- !u!1 &732934609
@@ -910,7 +918,7 @@ GameObject:
   - component: {fileID: 732934612}
   - component: {fileID: 732934611}
   m_Layer: 5
-  m_Name: DebugText (1)
+  m_Name: FishCounterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1093,7 +1101,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: bde61eb5a64388447911b12271ff4d7b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bde61eb5a64388447911b12271ff4d7b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1143,6 +1151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vis1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bde61eb5a64388447911b12271ff4d7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bde61eb5a64388447911b12271ff4d7b, type: 3}
 --- !u!1 &914783150
@@ -1161,7 +1173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &914783151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1233,7 +1245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8db50fb2de6ba4180bf2e86ad604bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 351202287}
+  followSpeed: 0.002
+  swipeRange: 200
+  shakeSpeed: 20
+  shakeAmount: 0.1
 --- !u!4 &993202325
 Transform:
   m_ObjectHideFlags: 0
@@ -1265,7 +1280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1077952872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,13 +1382,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vis3 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6316046092510204786, guid: d2571126683dffc4a9fec87a28096384, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6695949781692369352, guid: d2571126683dffc4a9fec87a28096384, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6695949781692369352, guid: d2571126683dffc4a9fec87a28096384, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7605662
+      value: 2.926
       objectReference: {fileID: 0}
     - target: {fileID: 6695949781692369352, guid: d2571126683dffc4a9fec87a28096384, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1433,7 +1452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1383722920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1468822668
 MonoBehaviour:
   m_ObjectHideFlags: 0
