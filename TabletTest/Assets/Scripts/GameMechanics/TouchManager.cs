@@ -68,7 +68,6 @@ public class TouchManager : MonoBehaviour
     bool CheckIfSwipeThresholdReached()
     {
         currentSwipePosY = Input.GetTouch(0).position.y;
-
         float distancePosY = currentSwipePosY - startSwipePosY;
 
         return distancePosY < -swipeRange || distancePosY > swipeRange;

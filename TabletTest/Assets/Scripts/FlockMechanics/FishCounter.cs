@@ -9,7 +9,7 @@ public class FishCounter : MonoBehaviour
     [SerializeField] Text debugText;
 
     int flocks;
-    int currentFishAmount;
+    int currentFishCount;
 
     private void Awake()
     {
@@ -19,14 +19,19 @@ public class FishCounter : MonoBehaviour
     private void Start()
     {
         flocks = FindObjectsOfType<Flock>().Length;
-        currentFishAmount = FindObjectOfType<Flock>().flockSize * flocks;
+        currentFishCount = FindObjectOfType<Flock>().flockSize * flocks;
         
-        debugText.text = "Vissen over: " + currentFishAmount.ToString();
+        debugText.text = "Vissen over: " + currentFishCount.ToString();
     }
 
     public void FishGotHooked()
     {
-        currentFishAmount--;
-        debugText.text = "Vissen over: " + currentFishAmount.ToString();
+        currentFishCount--;
+        debugText.text = "Vissen over: " + currentFishCount.ToString();
+    }
+
+    public string GetCurrentFishCountAsString()
+    {
+        return currentFishCount.ToString();
     }
 }

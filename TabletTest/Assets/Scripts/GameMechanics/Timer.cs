@@ -7,10 +7,14 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] Text timerText;
+    [SerializeField] GameObject endScreenPanel;
+    [SerializeField] Text fishLeftText;
+
+    [Space, SerializeField] Text timerText;
     [SerializeField] float timeInMinutes;
 
     float currentTime;
+    bool gameHasEnded;
 
     private void Awake()
     {
@@ -19,6 +23,9 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+        if (gameHasEnded)
+            return;
+
         UpdateTime();
     }
     void UpdateTime()
@@ -29,10 +36,18 @@ public class Timer : MonoBehaviour
         timerText.text = "Tijd over: " + time.ToString(@"mm\:ss");
         if (currentTime <= 0)
         {
-            ResetScene();
+            DisplayEndScreen();
         }
     }
-    void ResetScene()
+    void DisplayEndScreen()
+    {
+        gameHasEnded = true;
+
+        endScreenPanel.SetActive(true);
+        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over.";
+    }
+
+    public void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
