@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField] GameObject infoPanel;
     [SerializeField] GameObject endScreenPanel;
     [SerializeField] Text fishLeftText;
 
@@ -18,6 +19,8 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         currentTime = timeInMinutes * 60;
     }
 
@@ -43,8 +46,14 @@ public class Timer : MonoBehaviour
     {
         gameHasEnded = true;
 
+        infoPanel.SetActive(false);
         endScreenPanel.SetActive(true);
-        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over. \n Zonder jou zouden deze vissen uitsterven. \n Goed zo!";
+
+        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over " +
+        "\n Je hebt: " + FishHookCounter.fishHookCounter.GetFishHooksStoppedAsString() + " haken gestopt" +
+        "\n Zonder jou zouden deze vissen uitsterven \n Goed zo!";
+
+        Time.timeScale = 0f;
     }
 
     public void ReloadScene()

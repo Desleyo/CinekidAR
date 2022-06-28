@@ -15,7 +15,6 @@ public class FishHook : MonoBehaviour
     private void Start()
     {
         HookTriggered(true);
-
     }
 
     public void HookTriggered(bool shouldLowerHook)
@@ -25,11 +24,17 @@ public class FishHook : MonoBehaviour
 
         tween.StartEasing(shouldLowerHook);
 
-        if (!shouldLowerHook)
+        if (shouldLowerHook)
+            return;
+
+        inCooldown = true;
+
+        if(transform.childCount == 0)
         {
-            inCooldown = true;
-            Destroy(gameObject, destroyCooldown);
+            FishHookCounter.fishHookCounter.FishHookGotStopped();
         }
+
+        Destroy(gameObject, destroyCooldown);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,7 +49,8 @@ public class FishHook : MonoBehaviour
     {
         fish.transform.SetParent(this.gameObject.transform);
 
-        fish.GetComponent<FlockUnit>().myTransform.position = new Vector3(transform.position.x + fishOffset.x, transform.position.y + fishOffset.y, transform.position.z + fishOffset.z);
+        Vector3 positionOffset = new Vector3(transform.position.x + fishOffset.x, transform.position.y + fishOffset.y, transform.position.z + fishOffset.z);
+        fish.GetComponent<FlockUnit>().myTransform.position = positionOffset;
         fish.GetComponent<FlockUnit>().myTransform.rotation = Quaternion.Euler(fishRotation);
         fish.GetComponent<FlockUnit>().canMove = false; 
 

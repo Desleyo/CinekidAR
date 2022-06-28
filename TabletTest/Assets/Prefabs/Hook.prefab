@@ -249,5 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tweenMachine: {fileID: 0}
+  loweredPosYOffset: 3
   speed: 2
   easeType: 0

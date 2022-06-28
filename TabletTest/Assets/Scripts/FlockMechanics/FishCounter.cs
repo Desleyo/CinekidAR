@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FishCounter : MonoBehaviour
 {
     public static FishCounter fishCounter;
-    [SerializeField] Text debugText;
+    [SerializeField] Text fishCountText;
 
     int flocks;
     int currentFishCount;
@@ -21,13 +21,13 @@ public class FishCounter : MonoBehaviour
         flocks = FindObjectsOfType<Flock>().Length;
         currentFishCount = FindObjectOfType<Flock>().flockSize * flocks;
         
-        debugText.text = "Vissen over: " + currentFishCount.ToString();
+        fishCountText.text = "Vissen over: " + GetCurrentFishCountAsString();
     }
 
     public void FishGotHooked()
     {
         currentFishCount--;
-        debugText.text = "Vissen over: " + currentFishCount.ToString();
+        fishCountText.text = "Vissen over: " + GetCurrentFishCountAsString();
     }
 
     public string GetCurrentFishCountAsString()

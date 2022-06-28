@@ -6,6 +6,7 @@ public class TweenTester : MonoBehaviour
 {
     public TweenMachine tweenMachine;
 
+    [SerializeField] float loweredPosYOffset;
     Vector3 startPos, loweredPos;
     public float speed;
 
@@ -16,7 +17,7 @@ public class TweenTester : MonoBehaviour
         tweenMachine = FindObjectOfType<TweenMachine>();
 
         startPos = loweredPos = transform.position;
-        loweredPos.y = 0f;
+        loweredPos.y = Random.Range(-loweredPosYOffset, loweredPosYOffset);
     }
 
     public void StartEasing(bool shouldHookLower)
