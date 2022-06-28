@@ -28,8 +28,9 @@ public class FishHook : MonoBehaviour
             return;
 
         inCooldown = true;
+        GetComponent<Collider>().enabled = false;
 
-        if(transform.childCount == 0)
+        if (transform.childCount == 0)
         {
             FishHookCounter.fishHookCounter.FishHookGotStopped();
         }
