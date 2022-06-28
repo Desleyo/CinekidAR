@@ -20,6 +20,8 @@ public class FlockUnit : MonoBehaviour
 	private float rangeMin = 0;
 	private float rangeMax = 1;
 
+	public bool canMove = true;
+
 	public Transform myTransform { get; set; }
 
 	private void Awake()
@@ -39,6 +41,7 @@ public class FlockUnit : MonoBehaviour
 
 	public void MoveUnit()
 	{
+		if (myTransform == null || !canMove) return;
 		FindNeighbours();
 		CalculateSpeed();
 
@@ -69,9 +72,10 @@ public class FlockUnit : MonoBehaviour
 		for (int i = 0; i < allUnits.Length; i++)
 		{
 			var currentUnit = allUnits[i];
-			if (currentUnit != this)
-			{
-				float currentNeighbourDistanceSqr = Vector3.SqrMagnitude(currentUnit.myTransform.position - myTransform.position);
+			if (currentUnit == null) continue;
+			//if (currentUnit.myTransform == null) continue;
+			if (myTransform == null) continue;
+			float currentNeighbourDistanceSqr = Vector3.SqrMagnitude(currentUnit.myTransform.position - myTransform.position);
 				if (currentNeighbourDistanceSqr <= assignedFlock.cohesionDistance * assignedFlock.cohesionDistance)
 				{
 					cohesionNeighbours.Add(currentUnit);
@@ -84,7 +88,7 @@ public class FlockUnit : MonoBehaviour
 				{
 					aligementNeighbours.Add(currentUnit);
 				}
-			}
+			
 		}
 	}
 
@@ -125,6 +129,8 @@ public class FlockUnit : MonoBehaviour
 
 	private Vector3 CalculateAligementVector()
 	{
+		if (myTransform == null) return new Vector3(0,0,0);
+
 		var aligementVector = myTransform.forward;
 		if (aligementNeighbours.Count == 0)
 			return myTransform.forward;
@@ -165,6 +171,7 @@ public class FlockUnit : MonoBehaviour
 
 	private Vector3 CalculateBoundsVector()
 	{
+		if (myTransform == null) return Vector3.zero;
 		var offsetToCenter = assignedFlock.transform.position - myTransform.position;
 		bool isNearCenter = (offsetToCenter.magnitude >= assignedFlock.boundsDistance * 0.9f);	
 		return isNearCenter ? offsetToCenter.normalized : Vector3.zero;
@@ -172,6 +179,7 @@ public class FlockUnit : MonoBehaviour
 
 	private Vector3 CalculateObstacleVector()
 	{
+		if (myTransform == null) return Vector3.zero;
 		var obstacleVector = Vector3.zero;
 
 		//Underscore is gewoon een discard van de variabele aangezien ik die niet nodig heb
@@ -245,4 +253,8 @@ public class FlockUnit : MonoBehaviour
 		Gizmos.color = new Color32(28, 250, 192, 35);
 		//Gizmos.DrawWireSphere(transform.position, assignedFlock.obstacleDistance);
 	}
+    private void Start()
+    {
+        
+    }
 }

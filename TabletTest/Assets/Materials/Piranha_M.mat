@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5269079701706660579
+--- !u!114 &-5318430059154360234
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 0
---- !u!114 &-1933401968305650749
+--- !u!114 &-4224942583773068202
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,11 +33,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fish_Mat
+  m_Name: Piranha_M
   m_Shader: {fileID: -6465566751694194690, guid: 68a4192e91a480a49bb9a236db01599d, type: 3}
-  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap:
@@ -47,6 +47,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,12 +71,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _EmissionTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b78e83f624cf6ed4fb270e61bcb2b051, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -87,8 +87,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 57476953485bd4a4a8dbd1e4497c1aed, type: 3}
+        m_Texture: {fileID: 2800000, guid: f56ae9674da31274aa7afcf796435e3d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -106,10 +110,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _Ambient: 0.389
-    - _AmplitudeX: 0.2
-    - _AmplitudeY: 0.2
-    - _AmplitudeZ: 0
     - _BUILTIN_AlphaClip: 0
     - _BUILTIN_Blend: 0
     - _BUILTIN_CullMode: 2
@@ -124,56 +124,45 @@ Material:
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 0
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Diffuse: 1
-    - _Distance: 1
+    - _Distance: 65.27
     - _DstBlend: 0
-    - _EmiVal: -0.44
-    - _Frequency: 2
-    - _FrequencyX: 10
-    - _FrequencyY: 10
-    - _FrequencyZ: 5.03
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _HeadLimit: 2
+    - _EnvironmentReflections: 1
+    - _Frequency: 8
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _Line_Count: 15
     - _Metallic: 0
-    - _Mode: 0
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Power: 5
+    - _Parallax: 0.005
+    - _Power: 0.48
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 0
-    - _Seed: 0
-    - _Shininess: 5.04
+    - _ReceiveShadows: 1
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Spec: 1
     - _SpecularHighlights: 1
     - _Speed: 1
-    - _SpeedX: 2.49
-    - _SpeedY: 1.12
-    - _SpeedZ: 5.73
     - _SrcBlend: 1
     - _Surface: 0
-    - _Twirl_Strength: 3.13
-    - _UVSec: 0
+    - _Twirl_Strength: 3
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _AmbColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DifColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmiColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Line_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Line_Tiling: {r: 1, g: 1, b: 0, a: 0}
-    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _Twirl_Center: {r: 0.4, g: 0.5, b: 0, a: 0}
     - _Twirl_Offset: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []

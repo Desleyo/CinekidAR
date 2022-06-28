@@ -204,7 +204,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &2345102602588894499
 BoxCollider:
@@ -233,10 +233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tween: {fileID: 3423441221692207432}
   destroyCooldown: 3
-  fishHookWaitTime: 1
-  shakeSpeed: 5
-  shakeAmount: 0.01
-  shakeHook: 0
+  fishHookWaitTime: 1.5
+  fishRotation: {x: -90, y: 0, z: 0}
+  fishOffset: {x: 0, y: -0.9, z: 0}
 --- !u!114 &3423441221692207432
 MonoBehaviour:
   m_ObjectHideFlags: 0

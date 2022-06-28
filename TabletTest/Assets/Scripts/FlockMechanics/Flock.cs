@@ -94,9 +94,11 @@ public class Flock : MonoBehaviour
             allUnits[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
         }
     }
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = new Color32(24, 218, 222, 32);
         Gizmos.DrawSphere(transform.position, _boundsDistance);
+        Gizmos.color = new Color32(255, 0, 0, 32);
+        Gizmos.DrawCube(transform.position, spawnBounds);
     }
 }

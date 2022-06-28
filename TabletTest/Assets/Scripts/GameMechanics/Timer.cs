@@ -44,7 +44,7 @@ public class Timer : MonoBehaviour
         gameHasEnded = true;
 
         endScreenPanel.SetActive(true);
-        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over.";
+        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over. \n Zonder jou zouden deze vissen uitsterven. \n Goed zo!";
     }
 
     public void ReloadScene()

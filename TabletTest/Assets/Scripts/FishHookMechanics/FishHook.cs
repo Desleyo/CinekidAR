@@ -7,12 +7,15 @@ public class FishHook : MonoBehaviour
     [SerializeField] TweenTester tween;
     [SerializeField] float destroyCooldown = 3f;
     [SerializeField] float fishHookWaitTime = 1f;
+    [SerializeField] Vector3 fishRotation;
+    [SerializeField] Vector3 fishOffset;
 
     bool inCooldown;
 
     private void Start()
     {
         HookTriggered(true);
+
     }
 
     public void HookTriggered(bool shouldLowerHook)
@@ -39,12 +42,17 @@ public class FishHook : MonoBehaviour
 
     IEnumerator ReturnHook(GameObject fish)
     {
+        fish.transform.SetParent(this.gameObject.transform);
+
+        fish.GetComponent<FlockUnit>().myTransform.position = new Vector3(transform.position.x + fishOffset.x, transform.position.y + fishOffset.y, transform.position.z + fishOffset.z);
+        fish.GetComponent<FlockUnit>().myTransform.rotation = Quaternion.Euler(fishRotation);
+        fish.GetComponent<FlockUnit>().canMove = false; 
+
+        GetComponent<Collider>().enabled = false;
+
         yield return new WaitForSeconds(fishHookWaitTime);
 
-        fish.SetActive(false);
         FishCounter.fishCounter.FishGotHooked();
-
         HookTriggered(false);
-        GetComponent<Collider>().enabled = false;
     }
 }
