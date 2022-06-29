@@ -12,13 +12,15 @@ public class TouchManager : MonoBehaviour
     [Space, SerializeField] float shakeSpeed = 5f;
     [SerializeField] float shakeAmount = .1f;
 
-    FishHook currentFishHook;
+    GameObject currentInteractable;
     Vector3 startSwipePos, currentSwipePos;
     float hookStartPosX;
+
+    [Space, SerializeField] Material crossMaterial;
+    [SerializeField] LayerMask layerMask;
     Ray ray;
     RaycastHit hit;
-    [SerializeField] Material crossMaterial;
-    [SerializeField] LayerMask layerMask;
+
     private void Update()
     {
         if (Input.touchCount == 0)
@@ -41,8 +43,8 @@ public class TouchManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("FishHook"))
             {
-                currentFishHook = hit.collider.GetComponent<FishHook>();
-                hookStartPosX = currentFishHook.transform.position.x;
+                currentInteractable = hit.collider.gameObject;
+                hookStartPosX = currentInteractable.transform.position.x;
             }
         }
     }
@@ -50,10 +52,13 @@ public class TouchManager : MonoBehaviour
     void MoveHook()
     {
         Touch touch = Input.GetTouch(0);
-        Vector3 currentPos = currentFishHook.transform.position;
-        float shakeHookPosX = hookStartPosX + Mathf.Sin(Time.time * shakeSpeed) * shakeAmount;
+        Vector3 currentPos = currentInteractable.transform.position;
 
-        currentFishHook.transform.position = new Vector3(shakeHookPosX, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
+        if (currentInteractable.GetComponent<FishHook>())
+        {
+            float shakeHookPosX = hookStartPosX + Mathf.Sin(Time.time * shakeSpeed) * shakeAmount;
+            currentInteractable.transform.position = new Vector3(shakeHookPosX, currentPos.y + touch.deltaPosition.y * followSpeed, currentPos.z);
+        }
     }
 
     void CheckTouchEnded()
@@ -61,12 +66,14 @@ public class TouchManager : MonoBehaviour
         if (Input.GetTouch(0).phase != TouchPhase.Ended)
             return;
 
-        if (CheckIfSwipeThresholdReached())
+        if (CheckIfSwipeThresholdReached() && currentInteractable.GetComponent<FishHook>())
         {
-            currentFishHook.HookTriggered(false);
+            currentInteractable.GetComponent<FishHook>().HookTriggered(false);
         }
+
         Slice();
-        currentFishHook = null;
+
+        currentInteractable = null;
     }
 
     bool CheckIfSwipeThresholdReached()
@@ -117,11 +124,10 @@ public class TouchManager : MonoBehaviour
 
         return obj.Slice(hit.point, hit.transform.up, crossSectionMaterial);
     }
+
     public Quaternion CalculateRotation(Vector3 target, Vector3 origin)
-    {
-
+    { 
         Vector3 dir = target - origin;
-
         Quaternion rotation = Quaternion.Euler(dir);
 
         return rotation;
