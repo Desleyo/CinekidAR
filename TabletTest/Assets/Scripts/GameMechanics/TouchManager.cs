@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EzySlice;
 
 public class TouchManager : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class TouchManager : MonoBehaviour
     [SerializeField] float shakeAmount = .1f;
 
     FishHook currentFishHook;
-    float startSwipePosY, currentSwipePosY;
+    Vector3 startSwipePos, currentSwipePos;
     float hookStartPosX;
-
+    Ray ray;
+    RaycastHit hit;
+    [SerializeField] Material crossMaterial;
+    [SerializeField] LayerMask layerMask;
     private void Update()
     {
         if (Input.touchCount == 0)
@@ -30,10 +34,10 @@ public class TouchManager : MonoBehaviour
         if (Input.GetTouch(0).phase != TouchPhase.Began)
             return;
 
-        startSwipePosY = Input.GetTouch(0).position.y;
+        startSwipePos = Input.GetTouch(0).position;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+        if (Physics.Raycast(ray, out hit))
         {
             if (hit.collider.CompareTag("FishHook"))
             {
@@ -61,15 +65,65 @@ public class TouchManager : MonoBehaviour
         {
             currentFishHook.HookTriggered(false);
         }
-
+        Slice();
         currentFishHook = null;
     }
 
     bool CheckIfSwipeThresholdReached()
     {
-        currentSwipePosY = Input.GetTouch(0).position.y;
-        float distancePosY = currentSwipePosY - startSwipePosY;
+        currentSwipePos = Input.GetTouch(0).position;
+        float distancePosY = currentSwipePos.y - startSwipePos.y;
 
         return distancePosY < -swipeRange || distancePosY > swipeRange;
+    }
+
+    public void Slice()
+    {
+        Collider[] hits = Physics.OverlapBox(hit.point, new Vector3(5, 0.1f, 5), CalculateRotation(startSwipePos, currentSwipePos), layerMask);
+
+        if (hits.Length <= 0)
+            return;
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
+            if (hull != null)
+            {
+                GameObject bottom = hull.CreateLowerHull(hits[i].gameObject, crossMaterial);
+                GameObject top = hull.CreateUpperHull(hits[i].gameObject, crossMaterial);
+                AddHullComponents(bottom);
+                AddHullComponents(top);
+                Destroy(hits[i].gameObject);
+            }
+        }
+    }
+
+    public void AddHullComponents(GameObject go)
+    {
+        go.layer = 9;
+        Rigidbody rb = go.AddComponent<Rigidbody>();
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        MeshCollider collider = go.AddComponent<MeshCollider>();
+        collider.convex = true;
+
+        rb.AddExplosionForce(3, go.transform.position, 20);
+    }
+
+    public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)
+    {
+        // slice the provided object using the transforms of this object
+        if (obj.GetComponent<MeshFilter>() == null)
+            return null;
+
+        return obj.Slice(hit.point, hit.transform.up, crossSectionMaterial);
+    }
+    public Quaternion CalculateRotation(Vector3 target, Vector3 origin)
+    {
+
+        Vector3 dir = target - origin;
+
+        Quaternion rotation = Quaternion.Euler(dir);
+
+        return rotation;
     }
 }
