@@ -93,6 +93,8 @@ public class TouchManager : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
+            FishHookCounter.fishHookCounter.FishHookGotStopped();
+
             SlicedHull hull = SliceObject(hits[i].gameObject, crossMaterial);
             if (hull != null)
             {
@@ -113,7 +115,7 @@ public class TouchManager : MonoBehaviour
         MeshCollider collider = go.AddComponent<MeshCollider>();
         collider.convex = true;
 
-        rb.AddExplosionForce(3, go.transform.position, 20);
+        rb.AddExplosionForce(10, go.transform.position, 40);
     }
 
     public SlicedHull SliceObject(GameObject obj, Material crossSectionMaterial = null)

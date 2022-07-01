@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 6946928594465174959}
   - component: {fileID: 5155642501101076837}
   - component: {fileID: 3228537232478749782}
-  - component: {fileID: 5392941021013274929}
+  - component: {fileID: 9081350460622346509}
+  - component: {fileID: 5277874689956994277}
+  - component: {fileID: 2046134783276117021}
   m_Layer: 6
   m_Name: FishNet
   m_TagString: FishHook
@@ -28,9 +30,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6668839262032945328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: -7.64, y: -18.76, z: -12.82}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6668839262032945328}
-  m_Mesh: {fileID: 6994279756627944459, guid: add8d2fb8fe476c4aa1ae09ecf1292c9, type: 3}
+  m_Mesh: {fileID: -5066523906300639224, guid: 0430ec11f25776e4eab60a8bf9fb8ba6, type: 3}
 --- !u!23 &5155642501101076837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: add8d2fb8fe476c4aa1ae09ecf1292c9, type: 3}
+  - {fileID: 2100000, guid: 8c2e83ec5ccd60d4c9000f13fead4e14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!65 &5392941021013274929
+--- !u!65 &9081350460622346509
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,5 +114,36 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 225.82632, y: 170.26018, z: 223.61798}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.022582702, y: 0.01702604, z: 0.0031336332}
+  m_Center: {x: 0, y: 0.000000010728836, z: 0.009614035}
+--- !u!65 &5277874689956994277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668839262032945328}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.022582702, y: 0.01702604, z: 0.019195236}
+  m_Center: {x: 0, y: 0.000000010728836, z: -0.0015832543}
+--- !u!114 &2046134783276117021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6668839262032945328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5c1f6524a8e604b853782d95957a2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  touchCollider: {fileID: 5277874689956994277}
+  fishCollider: {fileID: 9081350460622346509}
+  speed: 20
+  destroyCooldown: 3
+  fishHookWaitTime: 1
+  fishOffset: {x: 0.7, y: 0.3, z: 0.7}

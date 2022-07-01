@@ -50,7 +50,7 @@ public class Timer : MonoBehaviour
         endScreenPanel.SetActive(true);
 
         fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over " +
-        "\n Je hebt: " + FishHookCounter.fishHookCounter.GetFishHooksStoppedAsString() + " haken gestopt" +
+        "\n Je hebt: " + FishHookCounter.fishHookCounter.GetFishHooksStoppedAsString() + " haken en netten gestopt" +
         "\n Zonder jou zouden deze vissen uitsterven \n Goed zo!";
 
         Time.timeScale = 0f;

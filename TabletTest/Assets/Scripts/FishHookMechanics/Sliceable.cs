@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EzySlice;
-public class sliceable : MonoBehaviour
+public class Sliceable : MonoBehaviour
 {
     public bool bladeMode;
 

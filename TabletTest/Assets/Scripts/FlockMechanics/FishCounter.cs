@@ -20,7 +20,6 @@ public class FishCounter : MonoBehaviour
     {
         flocks = FindObjectsOfType<Flock>().Length;
         currentFishCount = FindObjectOfType<Flock>().flockSize * flocks;
-        
         fishCountText.text = "Vissen over: " + GetCurrentFishCountAsString();
     }
 

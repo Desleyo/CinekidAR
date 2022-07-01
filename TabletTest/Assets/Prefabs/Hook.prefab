@@ -250,5 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenMachine: {fileID: 0}
   loweredPosYOffset: 1.5
+  startPos: {x: 0, y: 0, z: 0}
+  loweredPos: {x: 0, y: 0, z: 0}
+  isHook: 1
   travelTime: 3.5
   easeType: 0
