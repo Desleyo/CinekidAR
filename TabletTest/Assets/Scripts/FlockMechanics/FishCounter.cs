@@ -20,13 +20,13 @@ public class FishCounter : MonoBehaviour
     {
         flocks = FindObjectsOfType<Flock>().Length;
         currentFishCount = FindObjectOfType<Flock>().flockSize * flocks;
-        fishCountText.text = "Vissen over: " + GetCurrentFishCountAsString();
+        fishCountText.text = GetCurrentFishCountAsString();
     }
 
     public void FishGotHooked()
     {
         currentFishCount--;
-        fishCountText.text = "Vissen over: " + GetCurrentFishCountAsString();
+        fishCountText.text = GetCurrentFishCountAsString();
     }
 
     public string GetCurrentFishCountAsString()

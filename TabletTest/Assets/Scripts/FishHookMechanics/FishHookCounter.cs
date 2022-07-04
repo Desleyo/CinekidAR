@@ -14,13 +14,13 @@ public class FishHookCounter : MonoBehaviour
     {
         fishHookCounter = this;
 
-        fishHooksStoppedText.text = "Vishaken en netten gestopt: " + GetFishHooksStoppedAsString();
+        fishHooksStoppedText.text = GetFishHooksStoppedAsString();
     }
 
     public void FishHookGotStopped()
     {
         fishHooksStopped++;
-        fishHooksStoppedText.text = "Vishaken en netten gestopt: " + GetFishHooksStoppedAsString();
+        fishHooksStoppedText.text = GetFishHooksStoppedAsString();
     }
 
     public string GetFishHooksStoppedAsString()

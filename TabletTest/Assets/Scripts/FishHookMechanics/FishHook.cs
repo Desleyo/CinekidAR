@@ -5,16 +5,25 @@ using UnityEngine;
 public class FishHook : MonoBehaviour
 {
     [SerializeField] TweenTester tween;
+    [SerializeField] float hookCooldown = 3f;
     [SerializeField] float destroyCooldown = 3f;
     [SerializeField] float fishHookWaitTime = 1f;
     [SerializeField] Vector3 fishRotation;
     [SerializeField] Vector3 fishOffset;
 
+    bool canCollideWithFish;
     bool inCooldown;
 
     private void Start()
     {
         HookTriggered(true);
+
+        Invoke(nameof(FishCollisionCooldown), hookCooldown + tween.travelTime);
+    }
+
+    void FishCollisionCooldown()
+    {
+        canCollideWithFish = true;
     }
 
     public void HookTriggered(bool shouldLowerHook)
@@ -40,7 +49,7 @@ public class FishHook : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Fish"))
+        if (!other.CompareTag("Fish") || !canCollideWithFish)
             return;
 
         StartCoroutine(ReturnHook(other.gameObject));

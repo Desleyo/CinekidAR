@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tween: {fileID: 3423441221692207432}
+  hookCooldown: 1.5
   destroyCooldown: 10
   fishHookWaitTime: 1.5
   fishRotation: {x: -90, y: 0, z: 0}
@@ -250,8 +251,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenMachine: {fileID: 0}
   loweredPosYOffset: 1.5
-  startPos: {x: 0, y: 0, z: 0}
-  loweredPos: {x: 0, y: 0, z: 0}
-  isHook: 1
   travelTime: 3.5
   easeType: 0

@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class FishnetIndicator : MonoBehaviour
 {
-    [SerializeField] Image rightIndicator;
     [SerializeField] Image leftIndicator;
-    [SerializeField] Image forwardIndicator;
-    [SerializeField] Image backwardIndicator;
+    [SerializeField] Image rightIndicator;
+    [SerializeField] float angleThreshold = .5f;
+    [SerializeField] float forwardThreshold = .5f;
     Vector3 targetDirection;
+    bool gameEnded;
 
     void Start()
     {
@@ -19,12 +20,11 @@ public class FishnetIndicator : MonoBehaviour
     void DisableIndicators()
     {
         leftIndicator.enabled = rightIndicator.enabled = false;
-        forwardIndicator.enabled = backwardIndicator.enabled = false;
     }
 
     void Update()
     {
-        if (!FindObjectOfType<FishNet>())
+        if (!FindObjectOfType<FishNet>() || gameEnded)
         {
             DisableIndicators();
             return;
@@ -36,30 +36,27 @@ public class FishnetIndicator : MonoBehaviour
     void CalculateDirection()
     {
         targetDirection = FindObjectOfType<FishNet>().transform.position - transform.position;
+        float sideAngle = Vector3.Dot(transform.right, targetDirection); 
+        float forwardAngle = Vector3.Dot(transform.forward, targetDirection);
 
-        float sideAngle = Vector3.Dot(-transform.right, targetDirection); 
-        float forwardAngle = Vector3.Dot(transform.forward, targetDirection); 
-
-        if (sideAngle < 0)
+        if (sideAngle < -angleThreshold)
         {
-            rightIndicator.enabled = false;
             leftIndicator.enabled = true;
+            rightIndicator.enabled = false;
         }
-        else if (sideAngle > 0)
+        else if (sideAngle > angleThreshold)
         {
-            leftIndicator.enabled = false;
             rightIndicator.enabled = true;
+            leftIndicator.enabled = false;
         }
+        else if(forwardAngle > .5f)
+        {
+            DisableIndicators();
+        }
+    }
 
-        if (forwardAngle > 0)
-        {
-            forwardIndicator.enabled = true;
-            backwardIndicator.enabled = false;
-        }
-        else if (forwardAngle < 0)
-        {
-            backwardIndicator.enabled = true;
-            forwardIndicator.enabled = false;
-        }
+    public void GameEnded()
+    {
+        gameEnded = true;
     }
 }

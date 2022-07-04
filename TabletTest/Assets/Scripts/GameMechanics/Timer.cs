@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] GameObject infoPanel;
-    [SerializeField] GameObject endScreenPanel;
+    [SerializeField] GameObject endScreen;
     [SerializeField] Text fishLeftText;
+    [SerializeField] Text fishHooksStoppedText;
 
     [Space, SerializeField] Text timerText;
     [SerializeField] float timeInMinutes;
@@ -19,8 +20,6 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        Time.timeScale = 1f;
-
         currentTime = timeInMinutes * 60;
     }
 
@@ -36,7 +35,7 @@ public class Timer : MonoBehaviour
         currentTime -= Time.deltaTime;
 
         TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        timerText.text = "Tijd over: " + time.ToString(@"mm\:ss");
+        timerText.text = time.ToString(@"mm\:ss");
         if (currentTime <= 0)
         {
             DisplayEndScreen();
@@ -45,19 +44,19 @@ public class Timer : MonoBehaviour
     void DisplayEndScreen()
     {
         gameHasEnded = true;
+        FindObjectOfType<FishnetIndicator>().GameEnded();
 
         infoPanel.SetActive(false);
-        endScreenPanel.SetActive(true);
+        endScreen.SetActive(true);
 
-        fishLeftText.text = "Er zijn nog: " + FishCounter.fishCounter.GetCurrentFishCountAsString() + " vissen over " +
-        "\n Je hebt: " + FishHookCounter.fishHookCounter.GetFishHooksStoppedAsString() + " haken en netten gestopt" +
-        "\n Zonder jou zouden deze vissen uitsterven \n Goed zo!";
+        fishLeftText.text = FishCounter.fishCounter.GetCurrentFishCountAsString();
+        fishHooksStoppedText.text = FishHookCounter.fishHookCounter.GetFishHooksStoppedAsString();
 
         Time.timeScale = 0f;
     }
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 }
